@@ -1,0 +1,58 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bbold}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+\usepackage{nicefrac}
+
+\providecommand{\id}{\mathbb{1}}
+\providecommand{\gcdd}{\mathrm{gcd}}
+
+\title{An Introduction to the Theory of Groups}
+\author{Joseph J. Rotman}
+
+\begin{document}
+\maketitle
+Fourth Edition
+\section*{Problems}
+\subsection*{Chapter 1}
+\paragraph*{1.13}
+\begin{enumerate}[label=(\roman*)]
+\item A permutation $\alpha \in S_n$ is \textbf{\textit{regular}} if either $\alpha$ has no fixed points and it is the product of disjoint cycles of the same length, or $\alpha = \id$. 
+Prove that $\alpha$ is regular iff it is a power of an $n$-cycle $\beta$; that is, $\alpha = \beta^m$ for some $m$. (\textit{Hint}: if $\alpha = (a_1 a_2 \ldots a_k)(b_1 b_2 \ldots b_k)\ldots(z_1 z_2 \ldots z_k)$, where there are $m$ letters $a$, $b$, \ldots, $z$, then let $\beta = (a_1 b_1 \ldots z_1 a_2 b_2 \ldots z_2 \ldots a_k b_k \ldots z_k)$.)
+
+\textbf{Solution: } $\beta^m$ takes $a_1$ through $b_1 \ldots z_1$ to $a_2$ as desired. 
+$\id$ can be expressed as $\beta^n$ for $\beta(j) = j+1$ an $n$-cycle. 
+For a general regular $\alpha$, disjointess of the sets $a_j$, $b_j$, \ldots $z_j$ guaranteed that the $\beta$ from the hint is an $n$-cycle. 
+If there's some $n$-cycle $\beta$ with $n=mk$, and we take the $m$th power, we also get $m$ disjoint, length-$k$ cycles, as desired.
+\item If $\alpha$ is an $n$-cycle, then $\alpha^k$ is a product of $\gcd(n, k)$ disjoint cycles, each of length $\nicefrac{n}{\gcd(n, k)}$.
+
+\textbf{Solution:} $\alpha^n = \id$. If $n$ is a multiple of $k$, then $\alpha^n = \left( \alpha^{k} \right)^{\nicefrac{n}{k}}$.
+$\alpha^k$ would then be a product of $k$ $\nicefrac{n}{k}$-cycles.
+In the case where $n$ is not a multiple of $k$, but they have a non-trivial gcd, then starting at $\alpha_0$, $\alpha$ would take us to $\alpha_1$. 
+$\alpha^k$ will take us to $\alpha_k$. 
+It takes $\alpha_k$ to $\alpha_{2k}$, and so on until we get to $\alpha_{mk}$ = $\alpha_0$. 
+This happens if $m = \frac{n}{\gcd(n,k)}$, but I don't know how to prove that. 
+\item If $p$ is prime, then every power of a $p$ cycle is either a $p$-cycle or $\id$.
+
+\textbf{Solution:} This is a corollary of the last exercise, noting that $\gcd(p,k)=1$ if $k \neq p$ and $p$ if $k = p$.
+\end{enumerate}
+
+\paragraph*{1.17}
+How many $\alpha \in S_n$ are there with $\alpha^2 = \id$?
+
+\textbf{Solution: } There's $\id$, and there's disjoint unions of transpositions. 
+In terms of single transpositions, there are ${n \choose 2}$ of them. 
+If I'm going to put together a product of $j$ transpositions, there are ${n \choose 2}$ ways to choose the first transposition, ${{n-2} \choose 2}$ ways to choose the second, and ${{n-2j} \choose 2}$ ways to choose the $j$th. Since any permutation of these transpositions is equivalent, I ought to get
+\begin{equation*}
+1 + \sum_{j=1}^{\nicefrac{n}{2}} \dfrac{1}{j!} \prod_{k=0}^{j} {{n-2k} \choose 2}
+\end{equation*}
+or something, it's not important.
+\end{document}
