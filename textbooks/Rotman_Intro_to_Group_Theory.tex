@@ -9,11 +9,24 @@
 \usepackage{bbold}
 \usepackage{enumitem}
 \usepackage{graphicx}
-\usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+\usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
 \usepackage{nicefrac}
+\usepackage{xspace}
 
 \providecommand{\id}{\mathbb{1}}
 \providecommand{\gcdd}{\mathrm{gcd}}
+\providecommand{\FAG}{finite abelian group}
+\providecommand{\bemph}[1]{\emph{\textbf{#1}}}
+\providecommand{\hint}{\emph{Hint: }}
+\providecommand{\soln}{\textbf{Solution: }}
+\providecommand{\set}[1]{\left \lbrace #1 \right \rbrace}
+\providecommand{\st}{such that\xspace}
+\providecommand{\JK}{Joel Klassen\xspace}
+\providecommand{\CV}{Christophe Vuillot\xspace}
+\providecommand{\JH}{Jonas Helsen\xspace}
+\renewcommand{\iff}{\textrm{if and only if}\xspace}
+\providecommand{\inv}{^{-1}}
+\providecommand{\gen}[1]{\left \langle #1 \right \rangle}
 
 \title{An Introduction to the Theory of Groups}
 \author{Joseph J. Rotman}
@@ -25,16 +38,16 @@ Fourth Edition
 \subsection*{Chapter 1}
 \paragraph*{1.13}
 \begin{enumerate}[label=(\roman*)]
-\item A permutation $\alpha \in S_n$ is \textbf{\textit{regular}} if either $\alpha$ has no fixed points and it is the product of disjoint cycles of the same length, or $\alpha = \id$. 
-Prove that $\alpha$ is regular iff it is a power of an $n$-cycle $\beta$; that is, $\alpha = \beta^m$ for some $m$. (\textit{Hint}: if $\alpha = (a_1 a_2 \ldots a_k)(b_1 b_2 \ldots b_k)\ldots(z_1 z_2 \ldots z_k)$, where there are $m$ letters $a$, $b$, \ldots, $z$, then let $\beta = (a_1 b_1 \ldots z_1 a_2 b_2 \ldots z_2 \ldots a_k b_k \ldots z_k)$.)
+\item A permutation $\alpha \in S_n$ is \bemph{regular} if either $\alpha$ has no fixed points and it is the product of disjoint cycles of the same length, or $\alpha = \id$. 
+Prove that $\alpha$ is regular iff it is a power of an $n$-cycle $\beta$; that is, $\alpha = \beta^m$ for some $m$. (\hint if $\alpha = (a_1 a_2 \ldots a_k)(b_1 b_2 \ldots b_k)\ldots(z_1 z_2 \ldots z_k)$, where there are $m$ letters $a$, $b$, \ldots, $z$, then let $\beta = (a_1 b_1 \ldots z_1 a_2 b_2 \ldots z_2 \ldots a_k b_k \ldots z_k)$.)
 
-\textbf{Solution: } $\beta^m$ takes $a_1$ through $b_1 \ldots z_1$ to $a_2$ as desired. 
+\soln $\beta^m$ takes $a_1$ through $b_1 \ldots z_1$ to $a_2$ as desired. 
 $\id$ can be expressed as $\beta^n$ for $\beta(j) = j+1$ an $n$-cycle. 
 For a general regular $\alpha$, disjointess of the sets $a_j$, $b_j$, \ldots $z_j$ guaranteed that the $\beta$ from the hint is an $n$-cycle. 
 If there's some $n$-cycle $\beta$ with $n=mk$, and we take the $m$th power, we also get $m$ disjoint, length-$k$ cycles, as desired.
 \item If $\alpha$ is an $n$-cycle, then $\alpha^k$ is a product of $\gcd(n, k)$ disjoint cycles, each of length $\nicefrac{n}{\gcd(n, k)}$.
 
-\textbf{Solution:} $\alpha^n = \id$. If $n$ is a multiple of $k$, then $\alpha^n = \left( \alpha^{k} \right)^{\nicefrac{n}{k}}$.
+\soln $\alpha^n = \id$. If $n$ is a multiple of $k$, then $\alpha^n = \left( \alpha^{k} \right)^{\nicefrac{n}{k}}$.
 $\alpha^k$ would then be a product of $k$ $\nicefrac{n}{k}$-cycles.
 In the case where $n$ is not a multiple of $k$, but they have a non-trivial gcd, then starting at $\alpha_0$, $\alpha$ would take us to $\alpha_1$. 
 $\alpha^k$ will take us to $\alpha_k$. 
@@ -42,17 +55,103 @@ It takes $\alpha_k$ to $\alpha_{2k}$, and so on until we get to $\alpha_{mk}$ = 
 This happens if $m = \frac{n}{\gcd(n,k)}$, but I don't know how to prove that. 
 \item If $p$ is prime, then every power of a $p$ cycle is either a $p$-cycle or $\id$.
 
-\textbf{Solution:} This is a corollary of the last exercise, noting that $\gcd(p,k)=1$ if $k \neq p$ and $p$ if $k = p$.
+\soln This is a corollary of the last exercise, noting that $\gcd(p,k)=1$ if $k \neq p$ and $p$ if $k = p$.
 \end{enumerate}
 
 \paragraph*{1.17}
 How many $\alpha \in S_n$ are there with $\alpha^2 = \id$?
 
-\textbf{Solution: } There's $\id$, and there's disjoint unions of transpositions. 
+\soln There's $\id$, and there's disjoint unions of transpositions. 
 In terms of single transpositions, there are ${n \choose 2}$ of them. 
 If I'm going to put together a product of $j$ transpositions, there are ${n \choose 2}$ ways to choose the first transposition, ${{n-2} \choose 2}$ ways to choose the second, and ${{n-2j} \choose 2}$ ways to choose the $j$th. Since any permutation of these transpositions is equivalent, I ought to get
 \begin{equation*}
 1 + \sum_{j=1}^{\nicefrac{n}{2}} \dfrac{1}{j!} \prod_{k=0}^{j} {{n-2k} \choose 2}
 \end{equation*}
 or something, it's not important.
+
+\paragraph*{1.26}
+A group for which $x^2=\id$ for all $x$ must be Abelian.
+
+\soln We know that $aa = aea = abba = \id$, and that $abab = \id$. 
+This implies that $ab$ and $ba$ must both be equal to $b\inv a\inv$. 
+
+\paragraph{1.27}
+\begin{enumerate}[label=(\roman*)]
+\item Let $G$ be a \FAG containing no elements $a \neq e$ with $a^2 = e$. 
+Evaluate $a_1 \ast a_2 \ast \ldots \ast a_n$, where $a_1,\, a_2,\, \ldots, \, a_n$ is a list of all elements in $G$ with no repetitions.
+
+\soln Just for laughs, let's invert this big element.
+From the result of Exercise 1.23, we get $(a_1 \ast a_2 \ast \ldots \ast a_n) = a_n\inv \ast a_{n-1}\inv \ast \ldots \ast a_1\inv$.
+Let $A$ be another name for this big element, so I don't have to \LaTeX it all out. 
+The inverses of the individual group elements are unique elements of the group themselves, so the inverse of $A$ is another product of all elements of the group. 
+$G$ is abelian, so $A\inv = A$, since all permutations of products are equivalent.
+This means $A^2=e$, and the only element of $G$ for which that holds is $\id$.
+\item Prove \bemph{Wilson's Theorem}: If $p$ is prime, then
+\begin{equation*}
+(p-1)! = -1 \mod p.
+\end{equation*}
+(\hint The nonzero elements of $\mathbb{Z}_p$ form a multiplicative group.)
+
+\soln As far as I'm concerned, this completely contradicts the last exercise, since $-1$ is not the multiplicative identity unless $p=2$. 
+One interesting thing to note is that $(-1)^2 = 1 = 1^2$, violating the assumption of part (i).
+Now things start to get a little clearer. The inverse is unique, so, for all numbers from $2$ up to $p-2$, the multiplicative inverse mod $p$ is \emph{also} in the set \texttt{range}(2, $p-1$) (ranges are taken to be Python-style). 
+That means that $(p-2)! = \id$, and $(p-1)! = p-1$, as desired.
+\end{enumerate}
+
+\paragraph*{1.31}
+Let $G$ be a group, let $a \in G$, and let $m$ and $n$ be relatively prime integers. 
+If $a^m=\id$, show that there exists a $b$ \st $a=b^n$. 
+(\hint There are integers $s$ and $t$ \st $sm + tn = 1$. )
+
+\soln (Special thanks to \JK and \CV for their assistance.) We know $a^m = \id$, so that $a^{m + 1} = a$. 
+From the hint, $a^{m + sm + tn} = a$, and we can cancel multiples of $m$ to obtain $a^{tn} = a$, so we set $b = a^t$ and get what we were after.
+
+\paragraph*{1.42}
+Let $G=\set{x_1,\,x_2,\,\ldots,\,x_n}$ be a set equipped with an operation $\ast$, let $A=\left[ a_{ij} \right]$ be its multiplication table (i.e. $a_{ij} = x_i \ast x_j$), and assume that $G$ has a two-sided identity $e$: $e \ast x = x \ast e = x$ for all $x \in G$.   
+\begin{enumerate}[label=(\roman*)]
+\item Show that $\ast$ is commutative \iff $A$ is symmetric.
+
+\soln This is true by definition.
+\item Show that every element $x \in G$ has a (two-sided) inverse (i.e. there is an $x' \in G$ ) \st $x' \ast x=x \ast x' = e$. \iff $A$ is a \bemph{Latin Square} (i.e. all rows and columns are permutations of $G$). 
+
+\soln (Thanks to \JK and \CV for basically doing this problem for me). If $A$ is a Latin Square, then there exists a left inverse and a right inverse for $x$, since $\id$ must appear in the row and column corresponding to $x$. $zx=\id$, $xy=\id$, therefore $zxy=z$, but $zx=\id$, so $y=z$.
+
+Likewise, if $A$ is not a Latin square, then there are different elements $y$ and $z$ \st $xy=xz=w$. 
+If $x$ has a left inverse, then $y=z$ and we have a contradiction. 
+If it doesn't, we've proven what we want to prove.
+
+\item Assume that $e=x_1$ so that the first row of $A$ has $a_{1i} = x_i$. 
+Show that the first column of $A$ has $a_{i1} = x_i\inv$ for all $i$ \iff $a_{ii}=\id$ for all $i$.
+
+\soln This is mad trivial.
+\item With the multiplication table as shown in (iii), show that $\ast$ is associative \iff $a_{ij}a_{jk} = a_{ik}$.
+
+\soln
+
+\textbf{If: } The trick here is that, if the matrix is arranged such that $\id$ is on the diagonal, then $a_{ij} = x_i x_j\inv$. 
+If multiplication is associatve, $a_{ij} a_{jk} = x_i x_j\inv x_j x_k\inv = x_i x_k\inv = a_{ik},\, \blacksquare$.
+
+\textbf{Only If: } Every $x_k$ can be expressed as $x_i x_j\inv$ for fixed $x_i$, since the multiplication table is a latin square. 
+This implies that the product of three elements $x_k x_l x_m = x_i x_j\inv x_j x_n\inv x_n x_o\inv = a_{ij}a_{jn}a_{no}$. 
+We can evaluate this product in either order, using the assumed product: $a_{ij}a_{jn}a_{no} = a_{in}a_{no} = a_{ij}a_{jo} = a_{io},\, \blacksquare$.
+\end{enumerate}
+
+\paragraph*{2.3}
+The set-theoretic union of two subgroups is a subgroup \iff one is contained in the other. 
+Is this true if we use three subgroups?
+
+\soln No, see Bruckheimer et al, 1970: \texttt{https://www.jstor.org/stable/pdf/2316854.pdf}.
+
+\paragraph*{2.4}
+Let $S$ be a proper subgroup of $G$. 
+If $G - S$ is the complement of $S$, prove that $\gen{G - S} = G$.
+
+\soln We know that $\gen{G - S}$ contains $G - S$, so all we have to prove is that the elements of $S$ can be generated by multiplying together two things in $G - S$.
+Pick an element of $G - S$ $g$. 
+$g^{-1} \notin S$, since that would contradict the inclusion of the inverse. 
+Also, $sg^{-1} \notin S$ for any $s \in S$, since that would contradict closure.  
+However, $sg^{-1} \cdot g = s$, so we can find two elements of $G - S$ that generate $s$ under multiplication. 
+
+\paragraph*{2.5}
+Let $f: \, G \rightarrow H$ and $g: \, G \rightarrow H$
 \end{document}
