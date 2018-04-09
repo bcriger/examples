@@ -27,6 +27,8 @@
 \renewcommand{\iff}{\textrm{if and only if}\xspace}
 \providecommand{\inv}{^{-1}}
 \providecommand{\gen}[1]{\left \langle #1 \right \rangle}
+\providecommand{\hism}{homomorphism\xspace}
+\providecommand{\iism}{isomorphism\xspace}
 
 \title{An Introduction to the Theory of Groups}
 \author{Joseph J. Rotman}
@@ -153,5 +155,20 @@ Also, $sg^{-1} \notin S$ for any $s \in S$, since that would contradict closure.
 However, $sg^{-1} \cdot g = s$, so we can find two elements of $G - S$ that generate $s$ under multiplication. 
 
 \paragraph*{2.5}
-Let $f: \, G \rightarrow H$ and $g: \, G \rightarrow H$
+Let $f: \, G \rightarrow H$ and $g: \, G \rightarrow H$ be \hism{s}, and let
+\begin{equation*}
+K = \set{a \in G: \, f(a) = g(a)}.
+\end{equation*}
+Must $K$ be a subgroup of $G$?
+
+\soln We need: 
+\begin{itemize}
+	\item the identity to be in the set.
+	This is guaranteed by Theorem 1.13 -- $f(\id) = \id'$, so $\id \in K$.
+	\item closure under the inverse. 
+	This is also guaranteed by Theorem 1.13 -- $f(a\inv) = f(a)\inv = g(a)\inv = g(a\inv)$.
+	\item closure under multiplication. 
+	This is guaranteed by the defining property of the \hism -- $f(a b) = f(a) f(b) = g(a) g(b) = g(a b)$. 
+\end{itemize}
+$K$ is a subgroup. $\blacksquare$
 \end{document}
