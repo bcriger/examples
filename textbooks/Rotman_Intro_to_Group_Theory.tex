@@ -218,4 +218,19 @@ C^{i_0}AC^{-i_0} C^{i_0 + i_1}A C^{-(i_0 + i_1)} \ldots C^{\sum_{j=0}^{m-1} i_j 
 The only two values of $C^i A C^{-i}$ are $(1 \, 3)$ and $(2 \, 4)$, and the only 3 non-$\id$ values of $C^i$ are $(1 \, 2\, 3\, 4)$, $(1 \, 3) (2 \, 4)$, and $(1 \, 4\, 3\, 2)$. 
 Brute force enumeration of the words of this set reveals that $(1 \, 2)$ isn't generated. $\blacksquare$
 \end{enumerate}
+\paragraph*{2.12}
+\begin{enumerate}[label=(\roman*)]
+\item Prove that every group $G$ of order 4 is isomorphic either to $\mathbb{Z}_4$ or the 4-group $\mathbf{V}$.
+
+\soln Without loss of generality, the elements of a group of order 4 are $\id$, $a$, $b$, and $ab$. 
+Each of these elements needs an inverse, and the inverse of the inverse is the element itself, so that if $a\inv = b$, then $b\inv = a$ also. 
+Up to permutation of labels, there are two possible scenarios, either $a\inv = a$, $b\inv = b$, or $a\inv = b$. Writing out the multiplication tables then either gives us $\mathbb{Z}_4$ or $\mathbf{V}$.
+
+
+\item If $G$ is a group with $\abs{G} \leq 5$, then $G$ is abelian.
+
+\soln Order 2 is trivial, there's only one non-trivial group element.
+3 is prime, so the group has to be cyclic, and therefore abelian.
+Order 4 only permits the two groups we saw earlier, and 5 is prime.
+\end{enumerate}
 \end{document}
