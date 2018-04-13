@@ -6,6 +6,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{bbold}
 \usepackage{enumitem}
 \usepackage{graphicx}
@@ -15,9 +16,11 @@
 
 \providecommand{\id}{\mathbb{1}}
 \providecommand{\gcdd}{\mathrm{gcd}}
+\providecommand{\lcm}{\mathrm{lcm}}
 \providecommand{\FAG}{finite abelian group\xspace}
 \providecommand{\bemph}[1]{\emph{\textbf{#1}}}
 \providecommand{\abs}[1]{\left \vert #1 \right \vert}
+\providecommand{\index}[2]{\left[ #1 \,:\, #2 \right] #1 \right \vert}
 \providecommand{\hint}{\emph{Hint: }}
 \providecommand{\soln}{\textbf{Solution: }}
 \providecommand{\set}[1]{\left \lbrace #1 \right \rbrace}
@@ -25,6 +28,7 @@
 \providecommand{\JK}{Joel Klassen\xspace}
 \providecommand{\CV}{Christophe Vuillot\xspace}
 \providecommand{\JH}{Jonas Helsen\xspace}
+\providecommand{\LB}{Lennart Bittel\xspace}
 \renewcommand{\iff}{\textrm{if and only if}\xspace}
 \providecommand{\inv}{^{-1}}
 \providecommand{\gen}[1]{\left \langle #1 \right \rangle}
@@ -41,6 +45,7 @@ Fourth Edition
 \section*{Problems}
 \subsection*{Chapter 1}
 \paragraph*{1.13}
+
 \begin{enumerate}[label=(\roman*)]
 \item A permutation $\alpha \in S_n$ is \bemph{regular} if either $\alpha$ has no fixed points and it is the product of disjoint cycles of the same length, or $\alpha = \id$. 
 Prove that $\alpha$ is regular iff it is a power of an $n$-cycle $\beta$; that is, $\alpha = \beta^m$ for some $m$. (\hint if $\alpha = (a_1 a_2 \ldots a_k)(b_1 b_2 \ldots b_k)\ldots(z_1 z_2 \ldots z_k)$, where there are $m$ letters $a$, $b$, \ldots, $z$, then let $\beta = (a_1 b_1 \ldots z_1 a_2 b_2 \ldots z_2 \ldots a_k b_k \ldots z_k)$.)
@@ -63,6 +68,7 @@ This happens if $m = \frac{n}{\gcd(n,k)}$, but I don't know how to prove that.
 \end{enumerate}
 
 \paragraph*{1.17}
+
 How many $\alpha \in S_n$ are there with $\alpha^2 = \id$?
 
 \soln There's $\id$, and there's disjoint unions of transpositions. 
@@ -74,12 +80,14 @@ If I'm going to put together a product of $j$ transpositions, there are ${n \cho
 or something, it's not important.
 
 \paragraph*{1.26}
+
 A group for which $x^2=\id$ for all $x$ must be Abelian.
 
 \soln We know that $aa = aea = abba = \id$, and that $abab = \id$. 
 This implies that $ab$ and $ba$ must both be equal to $b\inv a\inv$. 
 
 \paragraph{1.27}
+
 \begin{enumerate}[label=(\roman*)]
 \item Let $G$ be a \FAG containing no elements $a \neq e$ with $a^2 = e$. 
 Evaluate $a_1 \ast a_2 \ast \ldots \ast a_n$, where $a_1,\, a_2,\, \ldots, \, a_n$ is a list of all elements in $G$ with no repetitions.
@@ -103,6 +111,7 @@ That means that $(p-2)! = \id$, and $(p-1)! = p-1$, as desired.
 \end{enumerate}
 
 \paragraph*{1.31}
+
 Let $G$ be a group, let $a \in G$, and let $m$ and $n$ be relatively prime integers. 
 If $a^m=\id$, show that there exists a $b$ \st $a=b^n$. 
 (\hint There are integers $s$ and $t$ \st $sm + tn = 1$. )
@@ -111,6 +120,7 @@ If $a^m=\id$, show that there exists a $b$ \st $a=b^n$.
 From the hint, $a^{m + sm + tn} = a$, and we can cancel multiples of $m$ to obtain $a^{tn} = a$, so we set $b = a^t$ and get what we were after.
 
 \paragraph*{1.42}
+
 Let $G=\set{x_1,\,x_2,\,\ldots,\,x_n}$ be a set equipped with an operation $\ast$, let $A=\left[ a_{ij} \right]$ be its multiplication table (i.e. $a_{ij} = x_i \ast x_j$), and assume that $G$ has a two-sided identity $e$: $e \ast x = x \ast e = x$ for all $x \in G$.   
 \begin{enumerate}[label=(\roman*)]
 \item Show that $\ast$ is commutative \iff $A$ is symmetric.
@@ -133,20 +143,22 @@ Show that the first column of $A$ has $a_{i1} = x_i\inv$ for all $i$ \iff $a_{ii
 \soln
 
 \textbf{If: } The trick here is that, if the matrix is arranged such that $\id$ is on the diagonal, then $a_{ij} = x_i x_j\inv$. 
-If multiplication is associatve, $a_{ij} a_{jk} = x_i x_j\inv x_j x_k\inv = x_i x_k\inv = a_{ik},\, \blacksquare$.
+If multiplication is associatve, $a_{ij} a_{jk} = x_i x_j\inv x_j x_k\inv = x_i x_k\inv = a_{ik}$. \qed
 
 \textbf{Only If: } Every $x_k$ can be expressed as $x_i x_j\inv$ for fixed $x_i$, since the multiplication table is a latin square. 
 This implies that the product of three elements $x_k x_l x_m = x_i x_j\inv x_j x_n\inv x_n x_o\inv = a_{ij}a_{jn}a_{no}$. 
-We can evaluate this product in either order, using the assumed product: $a_{ij}a_{jn}a_{no} = a_{in}a_{no} = a_{ij}a_{jo} = a_{io},\, \blacksquare$.
+We can evaluate this product in either order, using the assumed product: $a_{ij}a_{jn}a_{no} = a_{in}a_{no} = a_{ij}a_{jo} = a_{io}$. \qed
 \end{enumerate}
 
 \paragraph*{2.3}
+
 The set-theoretic union of two subgroups is a subgroup \iff one is contained in the other. 
 Is this true if we use three subgroups?
 
 \soln No, see Bruckheimer et al, 1970: \texttt{https://www.jstor.org/stable/pdf/2316854.pdf}.
 
 \paragraph*{2.4}
+
 Let $S$ be a proper subgroup of $G$. 
 If $G - S$ is the complement of $S$, prove that $\gen{G - S} = G$.
 
@@ -157,6 +169,7 @@ Also, $sg^{-1} \notin S$ for any $s \in S$, since that would contradict closure.
 However, $sg^{-1} \cdot g = s$, so we can find two elements of $G - S$ that generate $s$ under multiplication. 
 
 \paragraph*{2.5}
+
 Let $f: \, G \rightarrow H$ and $g: \, G \rightarrow H$ be \hism{s}, and let
 \begin{equation*}
 K = \set{a \in G: \, f(a) = g(a)}.
@@ -172,15 +185,17 @@ Must $K$ be a subgroup of $G$?
 	\item closure under multiplication. 
 	This is guaranteed by the defining property of the \hism -- $f(a b) = f(a) f(b) = g(a) g(b) = g(a b)$. 
 \end{itemize}
-$K$ is a subgroup. $\blacksquare$
+$K$ is a subgroup. \qed
 
 \paragraph*{2.7}
+
 If $n > 2$, then $A_n$ is generated by all the $3$-cycles. (\hint $(ij)(jk)=(ijk)$ and $(ij)(kl)=(ijk)(jkl)$).
 
 \soln Parity is defined as the number of transpositions in a decomposition of a permutation.
 For each adjacent pair of transpositions in such a decomposition, we can apply one of the two formulae in the hint to express it as a product of 3-cycles.
 
 \paragraph*{2.8}
+
 Imbed $S_n$ as a subgroup of $A_{n+2}$, but show that, for $n \geq 2$, $S_n$ cannot be imbedded in $A_{n+1}$.
 
 \soln The first part is trivial. 
@@ -194,10 +209,11 @@ This would leave us with the $n=3$ case, which we can allegedly show by seeing t
 I'm not quite happy with this solution.
 
 \paragraph*{2.9}
+
 \begin{enumerate}[label=(\roman*)]
 \item Prove that $S_n$ can be generated by $\set{(1 \, k), k \in \mathbb{Z}_n}$
 
-\soln We know that every element of $S_n$ can be expressed as a product of transpositions, and $(j \, k) = (1 \, k) (1 \, j) (1 \, k)$, so we're good. $\blacksquare$
+\soln We know that every element of $S_n$ can be expressed as a product of transpositions, and $(j \, k) = (1 \, k) (1 \, j) (1 \, k)$, so we're good. \qed
 \item Prove that $S_n$ can be generated by $\set{(j \, j + 1 \mod n), j \in \mathbb{Z}_n}$. 
 
 \soln If we can generate the generators from the generating set in the last part, we're good. 
@@ -216,9 +232,10 @@ Knowing that $C\inv$ is generated, I express the product as
 C^{i_0}AC^{-i_0} C^{i_0 + i_1}A C^{-(i_0 + i_1)} \ldots C^{\sum_{j=0}^{m-1} i_j } A C^{-\sum_{j=0}^{m-1} i_j } C^{-\sum_{j=0}^{m} i_j }
 \end{equation*}
 The only two values of $C^i A C^{-i}$ are $(1 \, 3)$ and $(2 \, 4)$, and the only 3 non-$\id$ values of $C^i$ are $(1 \, 2\, 3\, 4)$, $(1 \, 3) (2 \, 4)$, and $(1 \, 4\, 3\, 2)$. 
-Brute force enumeration of the words of this set reveals that $(1 \, 2)$ isn't generated. $\blacksquare$
+Brute force enumeration of the words of this set reveals that $(1 \, 2)$ isn't generated. \qed
 \end{enumerate}
 \paragraph*{2.12}
+
 \begin{enumerate}[label=(\roman*)]
 \item Prove that every group $G$ of order 4 is isomorphic either to $\mathbb{Z}_4$ or the 4-group $\mathbf{V}$.
 
@@ -233,4 +250,99 @@ Up to permutation of labels, there are two possible scenarios, either $a\inv = a
 3 is prime, so the group has to be cyclic, and therefore abelian.
 Order 4 only permits the two groups we saw earlier, and 5 is prime.
 \end{enumerate}
+
+\paragraph*{2.16}
+
+If $H \leq G$ has index 2, then $a^2 \in H$ for every $a \in G$
+
+\soln (\CV knocked this out in 60 seconds.) If $a$ is in $H$, we're done. 
+If not, it can be expressed as $gh$ for some $h$ in $H$. 
+Let's assume that the square is not in the subgroup. 
+This implies $ghgh = gh'$, $\therefore hgh=h'$, $\therefore gh = h\inv h'$, which is a contradiction, since $h\inv h'$ is in $H$. 
+
+\paragraph*{2.17}
+\begin{enumerate}[label=(\roman*)]
+\item If $a ,\, b \in G$ commute and if $a^m = \id = b^n$, then $(ab)^k = \id$, where $k=\lcm(m,n)$. 
+
+\soln They commute so $(ab)^k = a^k b^k$. 
+\item Let $A$ and $B$ be
+\begin{equation*}
+A = \begin{bmatrix} 0 & -1 \\  1 &  0 \end{bmatrix}, \qquad
+B = \begin{bmatrix} 0 &  1 \\ -1 & -1 \end{bmatrix}
+\end{equation*}
+Show that $A^4 = B^3 = \id$, but $AB$ has infinite order.
+
+\soln Let's take a look at the effect of $AB$ acting from the left on a matrix.
+\begin{equation*}
+\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}
+\begin{bmatrix} a & b \\ c & d \end{bmatrix}
+=
+\begin{bmatrix} a+c & b+d \\ c & d \end{bmatrix}
+\end{equation*}
+This preserves $c$ and $d$, so that if they were 0 and 1 on the way in, it'll be the same on the way out. 
+\begin{equation*}
+\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}^k = \begin{bmatrix} 1 & k \\ 0 & 1 \end{bmatrix}
+\end{equation*}
+Note that this matrix doesn't generate the Fibonacci sequence like I thought it would, which is why I did this trivial exercise. 
+\end{enumerate}
+
+\paragraph*{Note}
+There comes a point in every yellow book where the physicist reading it will begin to skip non-trivial exercises, simply because the physicist in question is uninterested in the answers to those questions. 
+This is that point.
+
+\paragraph*{2.30}
+
+If $S \leq G$ and $\index{G}{S}=2$, then $S \lhd G$.
+
+\soln We'd like to show that $gsg\inv \in S$. There are, just as in exercise 2.16, two cases. If $g \in S$, in which case $g\inv \in S$ and $gsg\inv $ is just a product of three subgroup elements. 
+If $g \notin S$, then $g=as_0$ with $s_0 \in S$. 
+Let's assume that $gsg\inv \notin S$. 
+This implies that $as_0 s s_0\inv a\inv = as_1$, which implies $s_0 s s_0\inv a\inv = s_1$.
+Inverting both sides, we obtain a contradiction: $a s_0 s\inv s_0 \inv$ must be in the coset, but $s_1\inv$ must be in the subgroup.
+
+\paragraph*{2.32} 
+
+If $H \leq G$ then $H \lhd G$ \iff for all $x, y \in G$, $xy \in H$ \iff $yx \in H$. 
+
+\soln (Solved with the assistance of \LB) If $H \lhd G$ and $xy \in H$, then $gxyg\inv \in H$ for all $g$.
+Setting $g=x\inv$ gets us $yx\in H$. 
+If $xy \in H$ implies $yx \in H$, then $xy(yx)\inv = xyx\inv y\inv$ is in $H$. 
+This implies that, if $y\inv \in H$, then $xyx\inv \in H$ for all $x$. 
+$y\inv \in H$ also implies $y \in H $. \qed  
+
+\paragraph*{2.38}
+
+If $H$ and $K$ are normal subgroups of $G$, show that $H \vee K \lhd G$. 
+
+\soln $ghkg\inv = ghg\inv gkg\inv = h'k' \in H \vee K$. \qed
+
+\paragraph*{2.39}
+
+Prove that if a normal subgroup $H$ of $G$ has index $n$, then $g^n \in H$ for all $g \in G$. 
+
+\soln We (\CV and I) are going to prove that $g^n$ is not in any coset of $H$, and has to, therefore, be in $H$.
+We begin by showing that, if the coset representatives are $a_j$ for the $j$th coset, then $a_j h_0 a_k h_1$ is not in coset $j$ or $k$. 
+Let's assume that it's in each of these cosets, and derive contradictions.
+\begin{flalign*}
+a_j h_0 a_k h_1 &= a_j h_2 \\
+h_0 a_k h_1 &= h_2 \\
+a_k h_1 &= h_2 h_1\inv
+\end{flalign*}
+That's a contradiction, since an element in coset $k$ can't be in the subgroup. 
+\begin{flalign*}
+a_j h_0 a_k h_1 &= a_k h_2
+\end{flalign*}
+Let's use normality, 
+\begin{flalign*}
+a_j h_0 h_1 a_k &= h_2 a_k \\
+a_j h_0 h_1 &= h_2 \\
+a_j h_0 &= h_2 h_1\inv
+\end{flalign*}
+Again, contradiction.
+
+Now, let's consider $g^n$. 
+$g=a_1 h$ for some $a_1$ in the coset representatives, and $a_1 h a_1 h$ cannot be equal to $a_1 h'$, so we say that, if it's not in $H$, it must be equal to some $a_2 h'$ from a separate coset. 
+Then $g^3 = a_1 h a_1 h a_1 h$ can't be from cosets 1 or 2, $g^4$ can't be from cosets 1 through 3, and $g^n$ can't be from any non-$H$ coset.
 \end{document}
+
+[label=(\roman*)]
