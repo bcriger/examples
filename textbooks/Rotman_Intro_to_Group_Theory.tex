@@ -353,12 +353,22 @@ of $G$ in some order. Prove that $x \in G'$.
 Also, if $a \in G$, then $a\inv \in G$, so we have a randomly-arranged sequence containing each element and its inverse. 
 I don't know what to do with this information, so let's try some small groups. 
 Order 3 has 3 possible sequences, $aba\inv b\inv$, $aa\inv bb\inv$, $abb\inv a\inv$, two of which are the identity, and the third is a commutator. 
-That's not too enlightening, though, so let's try one at order four. 
+That's not too enlightening, though, so let's try one at order seven. 
 A sequence could look like $a b c a\inv b\inv c\inv$. 
 If we're quite clever, we can write this as $a (b c) a\inv (c b)\inv$, insert the identity $a (b c) a\inv (b c)\inv (b c) (c b)\inv$ and expand to $a (b c) a\inv (b c)\inv b c b\inv c\inv$, and we're done.
 
 That's sort of cool, because it doesn't depend on the size of the group. 
 I could take some arbitrary product, find the inverse of the first element somewhere in the expression, and produce an element of the commutator group, effectively removing a variable from the expression. 
+
+But what do I do if the first element in the sequence is self-inverse? If the group is odd-order, there must be another self-inverse element, since $a\inv$ no longer exists as a distinct element. It also doesn't appear in the sequence. 
+Let's consider that order-seven example again: $abcb\inv c\inv d$. 
+With the same trick as before, we can move the $a$ to be next to $d$, but this leaves us with the task of showing that $ad \in G'$, which I don't think it is.
+
+To deal with this, we note that there's an element of the group which is equal to $da$, so we express it that way in the sequence. 
+Then, we use the commutator trick to move $a$ and $d$ next to $da$.
+The sub-sequence this produces is either $aadd = \id$ or $adad$ which is a commutator. 
+
+This can only be accomplished when the number of self-inverse elements is even, so it'll only work when the group order is odd.  
 \end{document}
 
 [label=(\roman*)]
