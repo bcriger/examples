@@ -1,0 +1,154 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbold}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
+\usepackage{nicefrac}
+\usepackage{xspace}
+
+\providecommand{\id}{\mathbb{1}}
+\providecommand{\gcdd}{\mathrm{gcd}}
+\providecommand{\lcm}{\mathrm{lcm}}
+\providecommand{\FAG}{finite abelian group\xspace}
+\providecommand{\bemph}[1]{\emph{\textbf{#1}}}
+\providecommand{\abs}[1]{\left \vert #1 \right \vert}
+\providecommand{\index}[2]{\left[ #1 \,:\, #2 \right] #1 \right \vert}
+\providecommand{\hint}{\emph{Hint: }}
+\providecommand{\soln}{\textbf{Solution: }}
+\providecommand{\set}[1]{\left \lbrace #1 \right \rbrace}
+\providecommand{\st}{such that\xspace}
+\providecommand{\JK}{Joel Klassen\xspace}
+\providecommand{\CV}{Christophe Vuillot\xspace}
+\providecommand{\JH}{Jonas Helsen\xspace}
+\providecommand{\LB}{Lennart Bittel\xspace}
+\renewcommand{\iff}{\textrm{if and only if}\xspace}
+\providecommand{\inv}{^{-1}}
+\providecommand{\gen}[1]{\left \langle #1 \right \rangle}
+\providecommand{\hism}{homomorphism\xspace}
+\providecommand{\iism}{isomorphism\xspace}
+\providecommand{\mod}{\textrm{ mod }}
+
+\title{Physics of Electric Propulsion}
+\author{Robert G. Jahn}
+
+\begin{document}
+\maketitle
+Second Printing
+\section*{Problems}
+\subsection*{Chapter 1}
+\paragraph*{1-1}
+Derive Equation 1-1.
+
+\soln Equation 1-1 is describes the balance of forces on a rocket exerting thrust:
+\begin{equation}
+	m\dot{v} = \dot{m}u_e + F_g
+\end{equation}
+We can get this one from Newton's second law for an object which has variable mass:
+\begin{flalign}
+	F &= \dfrac{dp}{dt} \\ 
+	F_g &= \dot{m}u_e + m\dot{v}
+\end{flalign}
+There's probably a minus sign in there, but I'm not too bothered.
+
+\paragraph*{1-2}
+Verify the first three characteristic velocities quoted in Table 1-1. 
+Explain why the values for gentle spiral ascent exceed those for impulsive ascent for a given Earth orbit transfer.
+
+\soln I'm guessing the Oberth effect is the reason for the sub-optimality of gentle spiral ascent.
+It could also be $g \Delta t$ loss. 
+
+\paragraph*{1-3}
+For a mission characterised by a velocity increment $\Delta v$ and a rocket of constant thrust level $T$, derive an expression for the optimum specific impulse in terms of power supply specific mass $\alpha$ and the initial total mass of the spacecraft. 
+
+\soln This is covered in Section 1-4, ``The Power Supply Penalty''. 
+Let's start by re-deriving the $u_e$ which optimises the payload mass ratio for fixed $\Delta t$ and $T$.
+%\begin{flalign}
+%	\dfrac{m_u + m_p + \Delta m}{m_u}
+%\end{flalign}
+We assume a linear relationship between plant power, plant mass, and thrust:
+\begin{equation}
+	m_p = \alpha P = \dfrac{\alpha T u_e}{2 \eta}
+\end{equation}
+From kinematics, we also know
+\begin{equation}
+	\Delta m = \dfrac{T \Delta t}{u_e}
+\end{equation}
+Both of these expressions depend only on the variable of interest ($u_e$), and parameters which are independent of $u_e$, namely $T$, $\Delta t$ (fixed by assumption), $\alpha$ and $\eta$ (efficiencies intrinsic to their related devices). 
+
+We'd like to minimise $m_p + \Delta m$:
+\begin{flalign}
+	\frac{d}{d u_e} (m_p + \Delta m) &= \frac{d}{d u_e} \left( \dfrac{\alpha T u_e}{2 \eta} + \dfrac{T \Delta t}{u_e} \right) \\ 
+	& = \dfrac{\alpha T}{2 \eta} - \dfrac{T \Delta t}{u_e^2} = 0
+\end{flalign}
+This results in a minimum at $u_e = \sqrt{\dfrac{2 \eta \Delta t}{\alpha}}$, since the second derivative is positive at that point (being a sum of positive terms).
+
+Now let's try the same thing, but with $T$ and $\Delta v$ fixed. 
+Our expression for $m_p$ still only depends on fixed quantities and $u_e$, but our expression for $\Delta m$ depends on $\Delta t$, which in turn depends on $u_e$. 
+We could also express $\Delta m$ using the Tsiolkovsky equation:
+\begin{equation}
+	\Delta m = m_0 \left( 1 - e^{-\frac{\Delta v}{u_e}} \right),
+\end{equation}
+but this still contains an $m_0$, which depends on $u_e$ for fixed $T$ and $\Delta v$. 
+Let's substitute again:
+\begin{flalign}
+	m_0 &= (m_u + m_p)e^{\frac{\Delta v}{u_e}} \\
+	\Delta m &= (m_u + m_p) \left( e^{\frac{\Delta v}{u_e}} - 1 \right)
+\end{flalign}
+This leads us to the same place as if we had just written down
+\begin{flalign}
+	m_0 &= \left( m_u + \dfrac{\alpha T u_e}{2 \eta} \right) e^{\frac{\Delta v}{u_e}} \\
+	\frac{m_u}{m_0} &= r = \frac{m_u e^{-\frac{\Delta v}{u_e}}}{m_u + \dfrac{\alpha T u_e}{2 \eta}}\\
+	\dfrac{\partial r}{\partial u_e} &= \frac{ m_u e^{-\frac{\Delta v}{u_e}} \left( m_u \Delta v + \frac{\alpha T u_e (\Delta v - u_e)}{2\eta} \right) }{u_e^2 \left( m_u + \frac{\alpha T u_e}{2 \eta} \right)^2} = 0 \\
+	\frac{2\eta m_u \Delta v}{\alpha T} + \Delta v u_e - u_e^2  &= 0 
+\end{flalign}
+There's only one positive root of this quadratic equation:
+\begin{equation}
+	u_e = \frac{\Delta v}{2} \left( 1 + \sqrt{\frac{8 \eta m_u}{\alpha T \Delta v} + 1} \right)
+\end{equation}
+Not too bad-looking, but who knows if it's correct?
+\paragraph*{1-4}
+If the mass delivered by a rocket, $m_f$, is separated into useful payload $m_u$ and the power-producing system mass $m_p = \alpha P$, show that equation 1-6 takes the form
+\begin{equation}
+	\frac{m_u}{m_0} = e^{ - \frac{\Delta v}{u_e}} - \dfrac{\alpha u_e^2}{2 \eta \Delta t} \left( 1 - e^{ - \frac{\Delta v}{u_e}} \right)
+\end{equation}
+where $\Delta t$ is the thrusting time and $\eta$ is the conversion efficiency. 
+What is the optimal $u_e$ for this mission?
+
+\soln Let's start with the Tsiolkovsky equation (1-6 in the book)
+\begin{flalign}
+	\frac{m_f}{m_0} &= e^{-\frac{\Delta v}{u_e}} \\
+	\frac{m_u + m_p}{m_0} &= e^{-\frac{\Delta v}{u_e}} \\
+	\frac{m_u}{m_0} &= e^{-\frac{\Delta v}{u_e}} - \frac{m_p}{m_0} \\
+	&= e^{-\frac{\Delta v}{u_e}} - \frac{\alpha P}{m_0} \\
+	&= e^{-\frac{\Delta v}{u_e}} - \frac{\alpha T u_e}{2 \eta m_0} 
+\end{flalign}
+To round this one out, we need the total impulse relation:
+\begin{equation}
+	T \Delta t = u_e \Delta m
+\end{equation}
+We can start again from the Tsiolkovsky equation to put $\Delta m$ in the appropriate form:
+\begin{flalign}
+	\frac{m_0 - \Delta m}{m_0} &= e^{-\frac{\Delta v}{u_e}}\\
+	\frac{m_0}{m_0} - \frac{m_0 - \Delta m}{m_0} &= 1 - e^{-\frac{\Delta v}{u_e}}\\
+	\Delta m &= m_0 \left( 1 - e^{-\frac{\Delta v}{u_e}} \right)\\
+	\therefore T &= \dfrac{m_0 u_e}{\Delta t} \left( 1 - e^{-\frac{\Delta v}{u_e}} \right)
+\end{flalign}
+Substitution solves the problem. 
+
+Let's differentiate to find the maximum $\frac{m_u}{m_0}$:
+\begin{flalign}
+	\frac{d}{du_e} \left( \frac{m_u}{m_0} \right) &= \frac{e^{-\frac{\Delta v}{u_e}} \Delta v  }{u_e^2} - \frac{ \left( 1 - e^{-\frac{\Delta v}{u_e}} \right) \alpha u_e}{ \eta \Delta t } + \frac{ e^{-\frac{\Delta v}{u_e}} \alpha \Delta v}{ 2 \eta \Delta t } = 0
+\end{flalign}
+This equation looks pretty much unsolvable. 
+
+\end{document}
+
+[label=(\roman*)]
